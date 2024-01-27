@@ -23,7 +23,7 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
-  String enteredNumber = '';
+  String enteredNumber = '0';
   String operator = '';
   double result = 0.0;
 
@@ -92,24 +92,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                   Expanded(
-                      
+                    Expanded(
                       flex: 1,
-                      child : buildNumberButton("C"),
-                      
+                      child: buildNumberButton("C"),
                     ),
-                     Expanded(
-                      
+                    Expanded(
                       flex: 1,
-                      child : buildNumberButton("⌫"),
-                      
+                      child: buildNumberButton("⌫"),
                     ),
-                    
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  
                   children: [
                     Expanded(
                       flex: 1,
@@ -127,7 +121,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       flex: 1,
                       child: buildNumberButton("÷"),
                     ),
-                    
                   ],
                 ),
                 Row(
@@ -149,7 +142,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       flex: 1,
                       child: buildNumberButton("×"),
                     ),
-                    
                   ],
                 ),
                 Row(
@@ -169,10 +161,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     ),
                     Expanded(
                       flex: 1,
-                      
                       child: buildNumberButton("\u2212"),
                     ),
-                    
                   ],
                 ),
                 Row(
@@ -186,16 +176,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       flex: 1,
                       child: buildNumberButton("+"),
                     ),
-                    
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      
                       flex: 1,
-                      child: buildNumberButton('='),
+                      child: buildOperatorButton('='),
                     ),
                   ],
                 ),
@@ -219,15 +207,16 @@ class _CalculatorPageState extends State<CalculatorPage> {
           onPressed: () {
             onNumberButtonClick(label);
           },
-          child: Text(label,style: TextStyle(
-            color: Colors.black, // สีของตัวเลข
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            label,
+            style: TextStyle(
+              color: Colors.black, // สีของตัวเลข
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-          
           style: ElevatedButton.styleFrom(
-            primary: Colors.yellow,
+            primary: Color.fromARGB(255, 255, 225, 206),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0.0),
             ),
@@ -247,9 +236,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
           onPressed: () {
             onOperatorButtonClick(label);
           },
-          child: Text(label),
+          child: Text(label,
+          style: TextStyle(
+              color: const Color.fromARGB(255, 255, 255, 255), // สีของตัวเลข
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),),
           style: ElevatedButton.styleFrom(
-  
+            primary: Color.fromARGB(255, 173, 78, 43),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0.0),
             ),
@@ -263,11 +257,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
     setState(() {
       if (label == 'C') {
         enteredNumber = '';
-        operator = '';
+        operator = '0';
         result = 0.0;
       } else if (label == '⌫') {
         if (enteredNumber.isNotEmpty) {
+          
           enteredNumber = enteredNumber.substring(0, enteredNumber.length - 1);
+          
         }
       } else {
         enteredNumber += label;
@@ -286,7 +282,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
         }
       } else {
         enteredNumber += label;
-        operator = label;
+        operator = '0';
       }
     });
   }
